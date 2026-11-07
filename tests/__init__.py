@@ -1,0 +1,1 @@
+"""Automated tests for Joke Agent Lab."""
