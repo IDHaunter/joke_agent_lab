@@ -83,11 +83,15 @@ uv sync --all-groups
 
 ## Run the backend
 
+If you'd like to have traces in LangSmith then get your api key in LangSmith and fill in the LangSmith section in .env file
+
 From the repository root, in terminal 1:
 
 ```bash
-uv run uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
+uv run uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000 --env-file .env
 ```
+
+Wihout LangSmith, you can run the backend without the `--env-file .env` flag.
 
 Useful endpoints:
 
