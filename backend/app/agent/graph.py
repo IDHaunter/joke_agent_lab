@@ -11,6 +11,8 @@ from backend.app.agent.prompts import SYSTEM_PROMPT
 from backend.app.core.config import get_settings
 from backend.app.tools.jokes import create_joke_tools
 
+from opentelemetry import trace
+tracer = trace.get_tracer("joke-agent-lab.agent")
 
 def _message_to_text(message: object) -> str:
     """Extract assistant-readable text from a LangChain message."""
@@ -101,10 +103,14 @@ def chat(session_id: UUID, message: str) -> str:
         "recursion_limit": settings.graph_recursion_limit,
     }
 
-    result = graph.invoke(
-        {"messages": [HumanMessage(content=message)]},
-        config=config,
-    )
+    with tracer.start_as_current_span("joke_agent.chat") as span:
+        span.set_attribute("agent.framework", "langgraph")
+        span.set_attribute("agent.operation", "chat")
+
+        result = graph.invoke(
+            {"messages": [HumanMessage(content=message)]},
+            config=config,
+        )
 
     messages = result.get("messages", [])
     if not messages:

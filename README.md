@@ -116,6 +116,14 @@ uv run ruff check .
 uv run pytest -q
 ```
 
+## OpenTelemetry tracing
+
+```bash
+docker run -d --name joke-agent-jaeger -p 16686:16686 -p 4317:4317 -p 4318:4318 jaegertracing/jaeger:latest
+```
+
+Open the [Jaeger UI](http://localhost:16686)
+
 ## Architecture
 
 ```text
