@@ -10,6 +10,7 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
+from opentelemetry.instrumentation.langchain import LangchainInstrumentor
 
 def configure_observability(app: FastAPI) -> None:
     """Configure OpenTelemetry tracing and instrument the FastAPI application."""
@@ -39,5 +40,8 @@ def configure_observability(app: FastAPI) -> None:
     )
 
     trace.set_tracer_provider(provider)
+
+    # Automatically trace LangChain and LangGraph operations.
+    LangchainInstrumentor().instrument()
 
     FastAPIInstrumentor.instrument_app(app)

@@ -83,7 +83,7 @@ uv sync --all-groups
 
 ## Run the backend
 
-If you'd like to have traces in LangSmith then get your api key in LangSmith and fill in the LangSmith section in .env file
+If you'd like to have traces in [LangSmith](https://smith.langchain.com/) then get your api key in LangSmith and fill in the LangSmith section in .env file
 
 From the repository root, in terminal 1:
 

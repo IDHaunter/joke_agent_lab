@@ -12,6 +12,7 @@ dependencies = [
     "opentelemetry-api>=1.45.2",
     "opentelemetry-exporter-otlp-proto-grpc>=1.45.2",
     "opentelemetry-instrumentation-fastapi>=0.66b2",
+    "opentelemetry-instrumentation-langchain>=0.63.0",
     "opentelemetry-sdk>=1.45.2",
     "pydantic>=2.11,<3.0",
     "pydantic-settings>=2.10,<3.0",
